@@ -14,7 +14,7 @@ class AboutSandwichCode < Neo::Koan
   end
 
   def test_counting_lines
-    assert_equal __, count_lines("example_file.txt")
+    assert_equal 4, count_lines("example_file.txt")
   end
 
   # ------------------------------------------------------------------
@@ -29,7 +29,7 @@ class AboutSandwichCode < Neo::Koan
   end
 
   def test_finding_lines
-    assert_equal __, find_line("example_file.txt")
+    assert_equal "test\n", find_line("example_file.txt")
   end
 
   # ------------------------------------------------------------------
@@ -39,7 +39,7 @@ class AboutSandwichCode < Neo::Koan
   # They both follow the pattern of "sandwich code".
   #
   # Sandwich code is code that comes in three parts: (1) the top slice
-  # of bread, (2) the meat, and (3) the bottom slice of bread.  The
+  # of bread, (2) the meat, and (3) the bottom slice of bread.  The 
   # bread part of the sandwich almost always goes together, but
   # the meat part changes all the time.
   #
@@ -74,7 +74,7 @@ class AboutSandwichCode < Neo::Koan
   end
 
   def test_counting_lines2
-    assert_equal __, count_lines2("example_file.txt")
+    assert_equal 4, count_lines2("example_file.txt")
   end
 
   # ------------------------------------------------------------------
@@ -84,7 +84,7 @@ class AboutSandwichCode < Neo::Koan
   end
 
   def test_finding_lines2
-    assert_equal __, find_line2("example_file.txt")
+    assert_equal nil, find_line2("example_file.txt")
   end
 
   # ------------------------------------------------------------------
@@ -100,7 +100,7 @@ class AboutSandwichCode < Neo::Koan
   end
 
   def test_open_handles_the_file_sandwich_when_given_a_block
-    assert_equal __, count_lines3("example_file.txt")
+    assert_equal 4, count_lines3("example_file.txt")
   end
 
 end

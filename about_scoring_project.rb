@@ -29,9 +29,47 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 #
 # Your goal is to write the score method.
 
+#conteo returns a count for every number in dice for example
+#[1,1,3,5,7]             <-- given this array
+#[0,1,2,3,4,5,6,7,8,9]   <-- creates 0-9 array
+#[0,2,0,1,0,1,0,1,0,0]   <-- returns this aray
+
 def score(dice)
-  # You need to write this method
+    
+  if dice.empty?
+    return 0
+  end
+
+  var_score = 0
+
+  conteo = (0..9).to_a.each.map { |x| dice.count(x)} 
+  
+  #Evaluating 1
+  if ( conteo[1] / 3 ) >= 0
+    multiplier1 = conteo[1]/3
+    var_score += multiplier1 * 1000
+  end
+
+  if ( conteo[1] % 3 ) != 0
+    var_score += (conteo[1] % 3)*100
+  end
+  
+  #Evaluating 5
+  if ( conteo[5] % 3 ) != 0
+    var_score += (conteo[5] % 3)* 50
+  end
+
+  #Evaluating numbers x 3    
+  if (conteo[2..9].count { |x| x >= 3 }) > 0
+    triplets = conteo[2..9].map {|x| x / 3}
+    array_multiplicator = triplets.each_with_index.select {|num,index| (num > 0)}.map {|x| x[0]}
+    product_triplets = triplets.each_with_index.select {|num,index| (num > 0)}.map {|x| x[1]}.map {|x| (x+2)*100}
+    var_score += array_multiplicator.zip(product_triplets).map{|x| x.inject(&:*)}.sum
+  end
+
+  var_score
 end
+
 
 class AboutScoringProject < Neo::Koan
   def test_score_of_an_empty_list_is_zero
